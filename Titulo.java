@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Felipe Bueno, Igor Fernando, João Victor Marcolino
@@ -54,6 +56,22 @@ public class Titulo {
         return null;
     }
     
+    public Mensalidade calcularMensalidade(){
+        float custo = Utilitario.custoBasico;
+        for(Matricula matricula : titular.getMatriculas()){
+            custo += matricula.getModalidade().getPreco();
+        }
+        return new Mensalidade(custo, Calendar.getInstance());
+    }
+    
+    public boolean pagarMensalidade(int mes){
+        if(mes>=1 && mes<=12){
+            mensalidades[mes-1].setDataPagamento(Calendar.getInstance());
+            return true;
+        }else
+            return false;
+    }
+            
     public String toString(){
         String aux = "";
         aux += "TituloId: "+this.tituloId+"\n";

@@ -14,6 +14,9 @@ public class Familiar extends Titulo{
             
     public Familiar(Socio titular){
         super(titular);
+        for(int i=0;i<dependentes.length;i++){
+            dependentes[i] = super.getTitular();
+        }
     }
     
     public String toString(){

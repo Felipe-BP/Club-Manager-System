@@ -139,13 +139,18 @@ public class Socio {
         Modalidade modalidade;
         if(Modalidade.pesquisarModalidade(modalidadeId, modalidades) != null){
             modalidade = Modalidade.pesquisarModalidade(modalidadeId, modalidades);
-            this.matriculas = new Matricula(modalidade, Calendar.getInstance());
+            for(int i=0;i<matriculas.length;i++){
+                if(matriculas[i]==null){
+                    matriculas[i] = new Matricula(modalidade, Calendar.getInstance());
+                    break;
+                }
+            }
             return true;
         }else
             return false;
     }
     
-    public boolean desmatricular(Matricula matriculaId){
+    public boolean desmatricular(int matriculaId){
         for(Matricula matricula : matriculas){
             if(matricula.getMatriculaId() == matriculaId){
                 matricula.setDataTermino(Calendar.getInstance());
