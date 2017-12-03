@@ -142,12 +142,12 @@ public class Socio {
             for(int i=0;i<matriculas.length;i++){
                 if(matriculas[i]==null){
                     matriculas[i] = new Matricula(modalidade, Calendar.getInstance());
-                    break;
+                    return true;
                 }
             }
-            return true;
-        }else
-            return false;
+        }
+        System.out.println("Erro! Não foi possível encontrar a modalidade de ID " + modalidadeId);
+        return false;
     }
     
     public boolean desmatricular(int matriculaId){
@@ -157,7 +157,14 @@ public class Socio {
                 return true;
             }
         }
+        System.out.println("Erro! Não foi possível encontrar a matricula de ID " + matriculaId);
         return false;
+    }
+    
+    public void listaMatricula(){
+        for(Matricula matricula : matriculas){
+            matricula.toString();
+        }
     }
     
     public String toString(){

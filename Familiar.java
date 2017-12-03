@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Felipe Bueno, Igor Fernando e João Victor Marcolino
@@ -17,6 +19,16 @@ public class Familiar extends Titulo{
         for(int i=0;i<dependentes.length;i++){
             dependentes[i] = super.getTitular();
         }
+    }
+    
+    @Override
+    public Mensalidade calcularMensalidade(){
+        int i = dependentes.length;
+        float custo = Utilitario.custoBasico + (Utilitario.custoDependente * i);
+        for(Matricula matricula : super.getTitular().getMatriculas()){
+            custo += matricula.getModalidade().getPreco();
+        }
+        return new Mensalidade(custo, Calendar.getInstance());
     }
     
     public String toString(){
